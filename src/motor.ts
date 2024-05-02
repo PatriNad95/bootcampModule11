@@ -1,6 +1,19 @@
 import { electronicFormatIBAN, isValidIBAN } from "ibantools";
 import { BANCOS, DatosIBAN, pattern } from "./modelo";
 
+export const validarIBAN = (iban: string): DatosIBAN => {
+  if (validacionFormatoIBAN(iban)) {
+    if (validacionIBANTools(iban)) {
+      const datosBanco = obtenerDatos(iban);
+      return datosBanco;
+    } else {
+      throw new Error("El IBAN no es válido.");
+    }
+  } else {
+    throw new Error("El formato del IBAN no es válido.");
+  }
+};
+
 export function validacionFormatoIBAN(iban: string): boolean {
   iban = eliminarEspaciosGuiones(iban);
   return pattern.test(iban);
@@ -37,5 +50,3 @@ function obtenerBanco(codigo_banco: string): string {
   console.log(BANCOS[codigoBanco]);
   return BANCOS[codigoBanco] ? BANCOS[codigoBanco] : "Banco no encontrado";
 }
-//     iban = iban.replace(" ", "").replace("-", "")
-//     return iban[8:12]

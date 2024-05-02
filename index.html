@@ -7,9 +7,38 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app">
-      <h1>TypeScript Sandbox</h1>
-    </div>
+    <main class="contenedor">
+      <div class="contenedor-h1">
+        <h1>Apartado A</h1>
+      </div>
+      <div class="card">
+        <form class="contenedor-formulario" id="formularioA">
+          <div class="grupo-formulario">
+            <label for="iban">Introduzca el IBAN:</label>
+            <input id="iban" type="text" name="iban" required />
+          </div>
+          <button type="submit">Validar</button>
+        </form>
+        <h2 id="banco"></h2>
+      </div>
+      <!-- <div class="contenedor-h1">
+        <h1>Apartado B</h1>
+      </div>
+      <div class="card">
+        <form class="contenedor-formulario" id="formularioB">
+          <div class="grupo-formulario">
+            <label for="description">Descripción:</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <button type="submit">Actualizar Película</button>
+        </form>
+      </div> -->
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
