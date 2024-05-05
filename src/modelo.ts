@@ -2,7 +2,7 @@ export const pattern = /^[A-Z]{2}\d{22}$/;
 
 export interface DatosIBAN {
   banco: string;
-  sucurcal: string;
+  sucursal: string;
   control: string;
   cuenta: string;
 }

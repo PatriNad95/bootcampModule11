@@ -35,11 +35,11 @@ export function obtenerDatos(iban: string): DatosIBAN {
   iban = eliminarEspaciosGuiones(iban);
   const codigo_sucursal = iban.substring(8, 12);
   const codigo_control = iban.substring(12, 14);
-  const cuenta = iban.substring(14, 22);
+  const cuenta = iban.substring(14, 24);
   const banco = obtenerBanco(iban.substring(4, 8));
   return {
     banco: banco,
-    sucurcal: codigo_sucursal,
+    sucursal: codigo_sucursal,
     control: codigo_control,
     cuenta: cuenta,
   };
@@ -47,6 +47,5 @@ export function obtenerDatos(iban: string): DatosIBAN {
 
 function obtenerBanco(codigo_banco: string): string {
   const codigoBanco = codigo_banco as keyof typeof BANCOS;
-  console.log(BANCOS[codigoBanco]);
   return BANCOS[codigoBanco] ? BANCOS[codigoBanco] : "Banco no encontrado";
 }

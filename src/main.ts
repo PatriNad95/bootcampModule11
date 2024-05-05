@@ -15,21 +15,41 @@ const iniciarFormulario = () => {
   }
 };
 
-export const iniciarValidacion = (): any => {
+export const iniciarValidacion = (event: Event): any => {
+  event.preventDefault();
   const iban = document.querySelector("#iban");
   if (iban && iban instanceof HTMLInputElement) {
-    const datosBanco = validarIBAN(iban.value);
-    pintarDatosBanco(datosBanco);
+    try {
+      const datosBanco = validarIBAN(iban.value);
+      pintarDatosBanco(datosBanco);
+    } catch (error) {
+      const infoContainer = document.querySelector("#info-banco");
+      if (infoContainer && infoContainer instanceof HTMLDivElement) {
+        infoContainer.innerHTML = `
+        <p>${error}</p>
+      `;
+      }
+    }
   } else {
-    throw new Error("Error al obtener el título");
+    throw new Error("Error al obtener el valor del input");
   }
 };
 
 export const pintarDatosBanco = (datosBanco: DatosIBAN) => {
-  const banco = document.querySelector("#banco");
-  if (banco && banco instanceof HTMLHeadingElement) {
-    banco.innerHTML = datosBanco.banco;
+  const infoContainer = document.querySelector("#info-banco");
+  if (infoContainer && infoContainer instanceof HTMLDivElement) {
+    infoContainer.innerHTML = `
+    <p>El IBAN esta bien formado</p>
+    <p>El IBAN es válido</p>
+    <p><span>Banco: </span>${datosBanco.banco}</p>
+    <p><span>Banco: </span>${datosBanco.banco}</p>
+    <p>
+    <span>Código Sucursal: </span>${datosBanco.sucursal}
+    </p>
+    <p><span>Dígito de control: </span>${datosBanco.control}</p>
+    <p><span>Número cuenta: </span>${datosBanco.cuenta}</p>
+  `;
   } else {
-    throw new Error("Error al obtener el título");
+    throw new Error("Error al obtener el contenedor de infomación");
   }
 };
