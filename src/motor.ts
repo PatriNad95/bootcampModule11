@@ -27,7 +27,7 @@ export function validacionIBANTools(iban: string): boolean {
   return isValidIBAN(iban);
 }
 
-function eliminarEspaciosGuiones(iban: string): string {
+export function eliminarEspaciosGuiones(iban: string): string {
   return iban.replaceAll(" ", "").replaceAll("-", "");
 }
 
@@ -45,7 +45,7 @@ export function obtenerDatos(iban: string): DatosIBAN {
   };
 }
 
-function obtenerBanco(codigo_banco: string): string {
+export function obtenerBanco(codigo_banco: string): string {
   const codigoBanco = codigo_banco as keyof typeof BANCOS;
   return BANCOS[codigoBanco] ? BANCOS[codigoBanco] : "Banco no encontrado";
 }
