@@ -144,3 +144,7 @@ button[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
 }
+
+textarea {
+  height: 200px;
+}
